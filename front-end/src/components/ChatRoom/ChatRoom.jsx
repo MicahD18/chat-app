@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 import "./ChatRoom.css";
 import useChat from "../../useChat";
 
-const ChatRoom = (props) => {
-  // Gets roomId from URL
-  const { roomId } = props.match.params; 
+// Gets roomId from URL
+const ChatRoom = ({ roomId, name }) => {
   // This creates a websocket and manages messaging
   const { messages, sendMessage } = useChat(roomId);
   // Message to be sent
@@ -13,16 +12,16 @@ const ChatRoom = (props) => {
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
-  }
+  };
 
   const handleSendMessage = () => {
     sendMessage(newMessage);
     setNewMessage("");
-  }
+  };
 
   return (
     <div className="chat-room-container">
-      <h1 className="room-name">Room: {roomId}</h1>
+      <h1 className="room-name">Room: {name}</h1>
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (
@@ -47,7 +46,7 @@ const ChatRoom = (props) => {
         Send
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ChatRoom
+export default ChatRoom;

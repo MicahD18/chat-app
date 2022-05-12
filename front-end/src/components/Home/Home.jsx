@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Home.css";
 
-const Home = () => {
-  const [roomName, setRoomName] = useState("");
-
-  const handleRoomNameChange = (event) => {
-    setRoomName(event.target.value);
-  };
+const Home = ({nameChange, name}) => {
 
   return (
     <div className="main-container">
@@ -17,11 +12,11 @@ const Home = () => {
         <input
           type="text"
           placeholder="Room name"
-          value={roomName}
-          onChange={handleRoomNameChange}
+          value={name}
+          onChange={(e) => nameChange(e.target.value)}
           className="text-input-field"
         ></input>
-        <Link to={`${roomName}`} className="enter-room-button">
+        <Link to={`${name}`} className="enter-room-button">
           Create Room
         </Link>
       </div>
